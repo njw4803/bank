@@ -1,6 +1,7 @@
 package njw.project.bank.config;
 
 import njw.project.bank.domain.user.UserEnum;
+import njw.project.bank.util.CustomResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+
 
 @Configuration
 public class SecurityConfig {
@@ -29,6 +32,7 @@ public class SecurityConfig {
     // JWT 서버를 사용. Session 사용안함.
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        log.debug("디버그 : filterChain 빈 등록됨");
         http.headers().frameOptions().disable(); // iframe 허용안함
         http.csrf().disable(); // enable이면 post맨 작동안함
         http.cors().configurationSource(configurationSource());
@@ -40,8 +44,13 @@ public class SecurityConfig {
         // httpBasic은 브라우저가 팝업창을 이용해서 사용자 인증을 진행한다.
         http.httpBasic().disable();
 
+        // Exception 가로채기
+        http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
+            CustomResponseUtil.unAuthentication(response,"로그인을 진행해 주세요.");
+        });
+
         http.authorizeRequests()
-                .antMatchers("api/s/**").authenticated()
+                .antMatchers("/api/s/**").authenticated()
                 .antMatchers("/api/admin/**").hasRole(String.valueOf(UserEnum.ADMIN)) // 최근 공식문서는 ROLE_ 생략
                 .anyRequest().permitAll();
 
@@ -49,6 +58,7 @@ public class SecurityConfig {
     }
 
     public CorsConfigurationSource configurationSource(){
+        log.debug("디버그 : configurationSource cors 설정이 SecurityFilterChain에 등록됨");
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.addAllowedHeader("*"); // 모든 header에 응답을 허용하겠다
         configuration.addAllowedMethod("*"); // GET, POST, PUT, DELETE (javascript 요청 허용)
