@@ -9,6 +9,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @AutoConfigureMockMvc // Mock(가짜) 환경에 MockMvc가 등록됨
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK) // 가짜 환경에서 진행
@@ -25,7 +26,7 @@ public class SecurityConfigTest {
         // given
 
         // when
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/s/hello"));
+        ResultActions resultActions = mvc.perform(get("/api/s/hello"));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
         int httpStatusCode = resultActions.andReturn().getResponse().getStatus();
         System.out.println("테스트 = " + responseBody);
@@ -41,7 +42,7 @@ public class SecurityConfigTest {
         // given
 
         // when
-        ResultActions resultActions = mvc.perform(MockMvcRequestBuilders.get("/api/admin/hello"));
+        ResultActions resultActions = mvc.perform(get("/api/admin/hello"));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
         int httpStatusCode = resultActions.andReturn().getResponse().getStatus();
         System.out.println("테스트 = " + responseBody);
