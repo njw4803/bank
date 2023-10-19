@@ -5,7 +5,7 @@ import njw.project.bank.domain.user.User;
 import njw.project.bank.domain.user.UserRepository;
 import njw.project.bank.dto.user.UserReqDto.JoinReqDto;
 import njw.project.bank.dto.user.UserRespDto.JoinRespDto;
-import njw.project.bank.handler.exception.CustomException;
+import njw.project.bank.handler.exception.CustomApiException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,7 +28,7 @@ public class UserService {
         Optional<User> userOP = userRepository.findByUsername(joinReqDto.getUsername());
         if (userOP.isPresent()) {
             // 유저네임 중복되었다는 뜻
-            throw new CustomException("동일한 username이 존재합니다.");
+            throw new CustomApiException("동일한 username이 존재합니다.");
         }
         // 2. 패스워드 인코딩 + 회원가입
         User userPS = userRepository.save(joinReqDto.toEntity(passwordEncoder));
