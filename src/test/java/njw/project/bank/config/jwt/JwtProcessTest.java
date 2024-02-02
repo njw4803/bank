@@ -21,7 +21,7 @@ class JwtProcessTest {
     }
 
     @Test
-    void verify() {
+    public void verify() throws Exception {
 
     }
 }
