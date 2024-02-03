@@ -23,6 +23,8 @@ class JwtProcessTest {
 
     @Test
     public void verify_tset() throws Exception {
-
+        String jwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJiYW5rIiwicm9sZSI6IkNVU1RPTUVSIiwiaWQiOjEsImV4cCI6MTcwNzU3NDI3M30.9pxcdVT-OSSA1OB-xaNUsmjm7ZW2Fz5LW1KUhZrPSlR1tnqTLTStT9DxWi8Pl9z5b76POPLuvVE6aXcL7gdmKQ";
+        LoginUser loginUser = JwtProcess.verify(jwtToken);
+        System.out.println("loginUser.getUser().getId() = " + loginUser.getUser().getId());
     }
 }
