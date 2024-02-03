@@ -17,11 +17,12 @@ class JwtProcessTest {
         
         String jwtToken = JwtProcess.create(loginUser);
         System.out.println("테스트 = " + jwtToken);
-        
+
+        assertTrue(jwtToken.startsWith(JwtVO.TOKEN_PREFIX));
     }
 
     @Test
-    public void verify() throws Exception {
+    public void verify_tset() throws Exception {
 
     }
 }
