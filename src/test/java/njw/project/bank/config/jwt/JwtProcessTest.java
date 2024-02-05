@@ -20,6 +20,7 @@ class JwtProcessTest {
         System.out.println("테스트 = " + jwtToken);
 
         assertTrue(jwtToken.startsWith(JwtVO.TOKEN_PREFIX));
+
     }
 
     @Test
