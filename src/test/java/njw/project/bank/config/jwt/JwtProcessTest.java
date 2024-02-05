@@ -35,4 +35,5 @@ class JwtProcessTest {
         assertThat(loginUser.getUser().getRole()).isEqualTo(UserEnum.ADMIN);
 
     }
+
 }
