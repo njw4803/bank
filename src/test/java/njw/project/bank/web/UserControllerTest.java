@@ -43,7 +43,6 @@ public class UserControllerTest extends DummyObject {
         joinReqDto.setFullname("러브");
 
         String requestBody = om.writeValueAsString(joinReqDto);
-        //System.out.println("requestBody = " + requestBody);
 
         // when
         ResultActions resultActions = mvc
@@ -62,13 +61,11 @@ public class UserControllerTest extends DummyObject {
         joinReqDto.setFullname("쌀");
 
         String requestBody = om.writeValueAsString(joinReqDto);
-        //System.out.println("requestBody = " + requestBody);
 
         // when
         ResultActions resultActions = mvc
                 .perform(post("/api/join").content(requestBody).contentType(MediaType.APPLICATION_JSON));
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
-        //System.out.println("responseBody = " + responseBody);
         // then
         resultActions.andExpect(status().isBadRequest());
     }
