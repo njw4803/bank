@@ -47,6 +47,7 @@ public class CustomExceptionHandler {
                 .collect(Collectors.toMap(
                         FieldError::getField,
                         fieldError -> Optional.ofNullable(fieldError.getDefaultMessage()).orElse("")
+                        //fieldError -> Optional.of(ErrorMessage.getErrorMessage(Objects.requireNonNull(fieldError))).orElse("")
                 ));
         return new ResponseEntity<>(new ResponseDto<>(-1,e.getMessage(),errors), HttpStatus.BAD_REQUEST);
     }
