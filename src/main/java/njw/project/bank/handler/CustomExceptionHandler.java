@@ -1,6 +1,7 @@
 package njw.project.bank.handler;
 
 import njw.project.bank.dto.ResponseDto;
+import njw.project.bank.handler.error.Error;
 import njw.project.bank.handler.exception.CustomApiException;
 import njw.project.bank.handler.exception.CustomForbiddenException;
 import njw.project.bank.handler.exception.CustomValidationException;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -46,8 +48,8 @@ public class CustomExceptionHandler {
         Map<String, String> errors = e.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(
                         FieldError::getField,
-                        fieldError -> Optional.ofNullable(fieldError.getDefaultMessage()).orElse("")
-                        //fieldError -> Optional.of(ErrorMessage.getErrorMessage(Objects.requireNonNull(fieldError))).orElse("")
+                        //fieldError -> Optional.ofNullable(fieldError.getDefaultMessage()).orElse("")
+                        fieldError -> Optional.of(Error.ErrorMessage.getErrorMessage(Objects.requireNonNull(fieldError))).orElse("")
                 ));
         return new ResponseEntity<>(new ResponseDto<>(-1,e.getMessage(),errors), HttpStatus.BAD_REQUEST);
     }
