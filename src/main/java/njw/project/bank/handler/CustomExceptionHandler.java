@@ -48,7 +48,6 @@ public class CustomExceptionHandler {
         Map<String, String> errors = e.getBindingResult().getFieldErrors().stream()
                 .collect(Collectors.toMap(
                         FieldError::getField,
-                        //fieldError -> Optional.ofNullable(fieldError.getDefaultMessage()).orElse("")
                         fieldError -> Optional.of(Error.ErrorMessage.getErrorMessage(Objects.requireNonNull(fieldError))).orElse("")
                 ));
         return new ResponseEntity<>(new ResponseDto<>(-1,e.getMessage(),errors), HttpStatus.BAD_REQUEST);
