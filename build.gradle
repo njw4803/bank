@@ -8,7 +8,7 @@ group = 'njw.project'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '11'
+    sourceCompatibility = "17"
 }
 
 configurations {
@@ -40,3 +40,4 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+targetCompatibility = JavaVersion.VERSION_14
