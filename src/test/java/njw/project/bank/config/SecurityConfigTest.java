@@ -31,6 +31,7 @@ public class SecurityConfigTest {
         int httpStatusCode = resultActions.andReturn().getResponse().getStatus();
         System.out.println("테스트 = " + responseBody);
         System.out.println("테스트 = " + httpStatusCode);
+
         // then
         assertThat(httpStatusCode).isEqualTo(401);
 
