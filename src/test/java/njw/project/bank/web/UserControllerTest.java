@@ -49,6 +49,7 @@ public class UserControllerTest extends DummyObject {
                 .perform(post("/api/join").content(requestBody).contentType(MediaType.APPLICATION_JSON));
         // then
         resultActions.andExpect(status().isCreated());
+
     }
 
     @Test
