@@ -69,6 +69,7 @@ public class UserControllerTest extends DummyObject {
         String responseBody = resultActions.andReturn().getResponse().getContentAsString();
         // then
         resultActions.andExpect(status().isBadRequest());
+
     }
 
     private void dataSetting() {
