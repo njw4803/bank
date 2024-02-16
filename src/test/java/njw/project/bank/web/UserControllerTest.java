@@ -55,6 +55,7 @@ public class UserControllerTest extends DummyObject {
 
     @Test
     public void join_fail_test() throws Exception {
+
         // given
         JoinReqDto joinReqDto = new JoinReqDto();
         joinReqDto.setUsername("ssar");
