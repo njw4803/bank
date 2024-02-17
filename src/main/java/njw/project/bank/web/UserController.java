@@ -8,15 +8,12 @@ import njw.project.bank.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -31,6 +28,5 @@ public class UserController {
         UserRespDto.JoinRespDto joinRespDto = userService.회원가입(joinReqDto);
         return new ResponseEntity<>(new ResponseDto<>(1,"회원가입 완료",joinRespDto), HttpStatus.CREATED);
     }
-
 
 }
