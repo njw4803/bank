@@ -69,4 +69,5 @@ public class RegexTest {
         boolean result = Pattern.matches("^[a-zA-Z0-9]{2,6}@[a-zA-Z0-9]{2,6}\\.[a-zA-Z]{2,3}$",email);
         System.out.println("test = " + result);
     }
+
 }
