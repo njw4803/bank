@@ -58,7 +58,7 @@ public class UserControllerTest extends DummyObject {
 
         // given
         JoinReqDto joinReqDto = new JoinReqDto();
-        joinReqDto.setUsername("ssar");
+        joinReqDto.setUsername("");
         joinReqDto.setPassword("1234");
         joinReqDto.setEmail("ssar@nate.com");
         joinReqDto.setFullname("쌀");

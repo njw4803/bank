@@ -8,5 +8,5 @@ import lombok.Getter;
 public enum UserEnum {
     ADMIN("관리자"), CUSTOMER("고객");
 
-    private String value;
+    private final String value;
 }
